@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.carousel-container {
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    /* border:5px solid #000;
+    width: 60%; */
+}
+
+.carousel-slide {
+    width: 100%;
+    white-space: nowrap;
+}
+.slide-item{
+    width: 100%;
+    height: 99vh;
+    display: inline-block;
+    background:center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+.slide-item .slide-title {
+    color:#fff;
+    font-size: 42px;
+    position: absolute;
+    left:5%;
+    top:30%;
+    background-color: rgba(0,0,0,.5);
+    padding: 5px 15px;
+    opacity: 0;
+    transition: all .7s ease-out;
+}
+.slide-item.active .slide-title {
+    opacity: 1;
+    left:20%;
+}
+.slide-item .slide-description {
+    color:#fff;
+    font-size: 18px;
+    font-weight: 300;
+    position: absolute;
+    left:5%;
+    top:43%;
+    width:60%;
+    white-space: normal;
+    background-color: rgba(0,0,0,.3);
+    padding: 25px 15px;
+    opacity: 0;
+    transition: all .7s ease-out;
+}
+.slide-item.active .slide-description {
+    opacity: 1;
+    left:20%;
+}
+
+
+/* prev-next */
+.arrows {
+    position: absolute;
+    top:50%;
+    width:4vw;
+    height:4vw;
+    cursor: pointer;
+    opacity: 0;
+    transition: all .1s ease-out;
+}
+.arrows svg {
+    width: 100%;
+    height: auto;
+    fill: #fff;
+    transition: all .1s ease-out;
+}
+.carousel-container .arrows:hover svg  {
+    transform: scale(1.3);
+}
+#prevBtn {
+    left: 15px;
+}
+
+#nextBtn {
+    right: 15px;
+}
+
+.carousel-container:hover #prevBtn  {
+    left: 30px;
+    opacity: .8;
+    transition: all .1s ease-out;
+}
+
+.carousel-container:hover #nextBtn  {
+    right: 30px;
+    opacity: .8;
+    transition: all .1s ease-out;
+}
+.carousel-container:hover #nextBtn:hover {
+    right: 15px;
+    opacity: 1;
+}
+.carousel-container:hover #prevBtn:hover {
+    left: 15px;
+    opacity: 1;
+}
+.carousel-container:hover #nextBtn::after:hover {
+    transform: rotate(-45deg) translateY(-80%) scale(1.2);
+}
+.carousel-container:hover #prevBtn::after:hover {
+    transform: rotate(45deg) translateY(-80%) scale(1.2);
+}
+
+/* pager */
+.pager {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1%;
+    opacity: 0;
+}
+.carousel-container:hover .pager {
+    bottom: 3%;
+    opacity: 1;
+    transition: all .1s ease-out;
+}
+
+.pager .item  {
+    width: 20px;
+    height: 20px;
+    background-color: rgba(255,255,255,.5);
+    margin: .3%;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform .1s ease-out;
+}
+
+.pager .item:hover, .pager .item.active  {
+    transform: scale(1.5);
+    background-color: rgba(255,255,255,1);
+    -webkit-box-shadow: 2px 2px 15px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    2px 2px 15px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         2px 2px 15px 0px rgba(50, 50, 50, 0.75);
+}
