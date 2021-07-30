@@ -5,6 +5,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 .carousel-container {
     position: relative;
@@ -22,7 +27,6 @@
 }
 .slide-item{
     width: 100%;
-    height: 99vh;
     display: inline-block;
     background:center center;
     background-repeat: no-repeat;
@@ -72,6 +76,7 @@
     height:4vw;
     cursor: pointer;
     opacity: 0;
+    transform: translateY(-50%);
     transition: all .1s ease-out;
 }
 .arrows svg {

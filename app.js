@@ -3,8 +3,12 @@ let carousel = (() => {
     carouselContainer.classList.add("carousel-container");
     
     const carouselSlide = document.querySelector("[data-slider]");
+    const parentItem = carouselSlide.parentNode;
     carouselSlide.classList.add("carousel-slide");
     const carouselImages = document.querySelectorAll("[data-slider] img");
+    var itemHeight = 800;
+
+    
 
     //buttons
     const prevBtn = document.createElement("div");
@@ -23,30 +27,33 @@ let carousel = (() => {
     carouselContainer.appendChild(prevBtn);
     carouselContainer.appendChild(nextBtn);
 
-    document.querySelector("body").appendChild(carouselContainer);
+    parentItem.appendChild(carouselContainer);
 
     //counter
     let counter = 1;
 
-    let size = document.body.clientWidth;
+    let size = parentItem.clientWidth;
 
     carouselSlide.style.transform = 'translateX(' + (-size * counter) + 'px)';
 
     let pager = document.createElement("div");
     pager.className = "pager";
 
-    let slideHtml = carouselImages[carouselImages.length - 1].dataset.title ?  '<div class="slide-item" id="lastClone" style="background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"><span class="slide-title">'+ carouselImages[carouselImages.length - 1].dataset.title +'</span><span class="slide-description">'+ carouselImages[carouselImages.length - 1].dataset.content +'</span></div>' : '<div class="slide-item" id="lastClone" style="background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"></div>';
+    var parentHeight = itemHeight || parseInt((carouselImages[carouselImages.length - 1].clientHeight / carouselImages[carouselImages.length - 1].clientWidth) * parentItem.clientWidth);
+    carouselContainer.style.height = parentHeight+"px";
+
+    let slideHtml = carouselImages[carouselImages.length - 1].dataset.title ?  '<div class="slide-item" id="lastClone" style="height: '+parentHeight+'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"><span class="slide-title">'+ carouselImages[carouselImages.length - 1].dataset.title +'</span><span class="slide-description">'+ carouselImages[carouselImages.length - 1].dataset.content +'</span></div>' : '<div class="slide-item" id="lastClone" style="height: '+parentHeight+'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"></div>';
 
     for (let index = 0; index < carouselImages.length; index++) {
         const image = carouselImages[index];
 
         pager.innerHTML = pager.innerHTML + '<div class="item"></div>';
-        slideHtml += image.dataset.title ? '<div class="slide-item" style="background-image: url(' + image.src + ')"><span class="slide-title">'+ image.dataset.title +'</span><span class="slide-description">'+ image.dataset.content +'</span></div>' : '<div class="slide-item" style="background-image: url(' + image.src + ')"></div>';
+        slideHtml += image.dataset.title ? '<div class="slide-item" style="height: '+parentHeight+'px; background-image: url(' + image.src + ')"><span class="slide-title">'+ image.dataset.title +'</span><span class="slide-description">'+ image.dataset.content +'</span></div>' : '<div class="slide-item" style="height: '+parentHeight+'px; background-image: url(' + image.src + ')"></div>';
         
     }
 
 
-    slideHtml += carouselImages[0].dataset.title ? '<div class="slide-item" id="firstClone" style="background-image: url(' + carouselImages[0].src + ')"><span class="slide-title">'+ carouselImages[0].dataset.title +'</span><span class="slide-description">'+ carouselImages[0].dataset.content +'</span></div>' : '<div class="slide-item" id="firstClone" style="background-image: url(' + carouselImages[0].src + ')"></div>';
+    slideHtml += carouselImages[0].dataset.title ? '<div class="slide-item" id="firstClone" style="height: '+parentHeight+'px; background-image: url(' + carouselImages[0].src + ')"><span class="slide-title">'+ carouselImages[0].dataset.title +'</span><span class="slide-description">'+ carouselImages[0].dataset.content +'</span></div>' : '<div class="slide-item" id="firstClone" style="height: '+parentHeight+'px; background-image: url(' + carouselImages[0].src + ')"></div>';
 
     carouselSlide.innerHTML = slideHtml;
     const slideItems = document.querySelectorAll(".slide-item");
