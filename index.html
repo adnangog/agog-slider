@@ -5,13 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>AgogSlider</title>
+    <link rel="stylesheet" href="agogSlider.css">
     <link rel="stylesheet" href="style.css">
+    <script src="agogSlider.js"></script>
 </head>
 
 <body>
-<div style="width: 1280px;">
-    <div data-slider>
+    <h1>AGOG<b>SLIDER</b></h1>
+<div class="custom-container">
+    <div data-agog-slider>
         <img src="6.jpg" alt="" />
         <img src="1.jpg" data-title="Title 1"
             data-content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet mattis tortor. Proin bibendum gravida odio non tempus. Etiam fermentum mauris id nisi venenatis, eget sollicitudin lectus euismod. Mauris lorem est, semper eu egestas sit amet, eleifend ac metus. Vivamus non vulputate dui. Maecenas efficitur massa et erat consequat, vitae cursus libero sollicitudin. Fusce porttitor, metus id iaculis volutpat, magna nibh suscipit risus, nec convallis turpis dolor nec lectus. Suspendisse dapibus ullamcorper cursus. Suspendisse consequat ultrices ultricies. Phasellus blandit imperdiet nulla nec pretium. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vel blandit elit."
@@ -28,7 +31,11 @@
             alt="" />
     </div>
 </div>
-    <script src="app.js"></script>
+<script>
+    agogSlider.init({
+        itemHeight:600
+    });
+</script>
 </body>
 
 </html>
