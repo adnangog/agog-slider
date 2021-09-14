@@ -19,8 +19,7 @@
     var defaults = {
         selector: '[data-agog-slider]',
         containerClass: 'agogSlider-container',
-        itemContainerClass: 'agogSlider-items-container',
-        carouselClass: 'agogSlider-items',
+        slideClass: 'agogSlider-slide',
         itemClass: 'agogSlider-item',
         itemHeight: null,
         callbackBefore: function () {
@@ -86,10 +85,10 @@
 
             const carouselSlide = carousels[index];
             const parentItem = carouselSlide.parentNode;
-            carouselSlide.classList.add("agogSlider-slide");
+            carouselSlide.classList.add(settings.slideClass);
 
             const carouselContainer = document.createElement("div");
-            carouselContainer.classList.add("agogSlider-container");
+            carouselContainer.classList.add(settings.containerClass);
 
             const carouselImages = carouselSlide.querySelectorAll("img");
 
@@ -123,21 +122,21 @@
             var parentHeight = settings.itemHeight || parseInt((carouselImages[carouselImages.length - 1].clientHeight / carouselImages[carouselImages.length - 1].clientWidth) * parentItem.clientWidth);
             carouselContainer.style.height = parentHeight + "px";
 
-            let slideHtml = carouselImages[carouselImages.length - 1].dataset.title ? '<div class="agogSlider-item" id="lastClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"><span class="slide-title">' + carouselImages[carouselImages.length - 1].dataset.title + '</span><span class="slide-description">' + carouselImages[carouselImages.length - 1].dataset.content + '</span></div>' : '<div class="agogSlider-item" id="lastClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"></div>';
+            let slideHtml = carouselImages[carouselImages.length - 1].dataset.title ? '<div class="'+settings.itemClass+'" id="lastClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"><span class="slide-title">' + carouselImages[carouselImages.length - 1].dataset.title + '</span><span class="slide-description">' + carouselImages[carouselImages.length - 1].dataset.content + '</span></div>' : '<div class="'+settings.itemClass+'" id="lastClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"></div>';
 
             for (let index = 0; index < carouselImages.length; index++) {
                 const image = carouselImages[index];
 
                 pager.innerHTML = pager.innerHTML + '<div class="item"></div>';
-                slideHtml += image.dataset.title ? '<div class="agogSlider-item" style="height: ' + parentHeight + 'px; background-image: url(' + image.src + ')"><span class="slide-title">' + image.dataset.title + '</span><span class="slide-description">' + image.dataset.content + '</span></div>' : '<div class="agogSlider-item" style="height: ' + parentHeight + 'px; background-image: url(' + image.src + ')"></div>';
+                slideHtml += image.dataset.title ? '<div class="'+settings.itemClass+'" style="height: ' + parentHeight + 'px; background-image: url(' + image.src + ')"><span class="slide-title">' + image.dataset.title + '</span><span class="slide-description">' + image.dataset.content + '</span></div>' : '<div class="'+settings.itemClass+'" style="height: ' + parentHeight + 'px; background-image: url(' + image.src + ')"></div>';
 
             }
 
 
-            slideHtml += carouselImages[0].dataset.title ? '<div class="agogSlider-item" id="firstClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[0].src + ')"><span class="slide-title">' + carouselImages[0].dataset.title + '</span><span class="slide-description">' + carouselImages[0].dataset.content + '</span></div>' : '<div class="agogSlider-item" id="firstClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[0].src + ')"></div>';
+            slideHtml += carouselImages[0].dataset.title ? '<div class="'+settings.itemClass+'" id="firstClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[0].src + ')"><span class="slide-title">' + carouselImages[0].dataset.title + '</span><span class="slide-description">' + carouselImages[0].dataset.content + '</span></div>' : '<div class="'+settings.itemClass+'" id="firstClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[0].src + ')"></div>';
 
             carouselSlide.innerHTML = slideHtml;
-            const slideItems = document.querySelectorAll(".agogSlider-item");
+            const slideItems = document.querySelectorAll("."+settings.itemClass);
             carouselContainer.appendChild(pager);
             const pagerItems = document.querySelectorAll(".pager div");
 
