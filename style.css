@@ -17,6 +17,16 @@ body {
 }
 h1 {
     font-weight: 300;
+    vertical-align: middle;
+}
+h1 span {
+    font-size: 18px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+h1 span a {
+    color: #ddd;
+    text-decoration: none;
 }
 .custom-container {
     border-radius: 10px;
