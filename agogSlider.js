@@ -21,7 +21,7 @@
         containerClass: 'agogSlider-container',
         slideClass: 'agogSlider-slide',
         itemClass: 'agogSlider-item',
-        itemHeight: null,
+        itemHeight: 600,
         callbackBefore: function () {
         },
         callbackAfter: function () {
@@ -119,7 +119,7 @@
             let pager = document.createElement("div");
             pager.className = "pager";
 
-            var parentHeight = settings.itemHeight || parseInt((carouselImages[carouselImages.length - 1].clientHeight / carouselImages[carouselImages.length - 1].clientWidth) * parentItem.clientWidth);
+            var parentHeight = settings.itemHeight || parseInt((carouselImages[carouselImages.length - 1].height / carouselImages[carouselImages.length - 1].width) * parentItem.clientWidth);
             carouselContainer.style.height = parentHeight + "px";
 
             let slideHtml = carouselImages[carouselImages.length - 1].dataset.title ? '<div class="'+settings.itemClass+'" id="lastClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"><span class="slide-title">' + carouselImages[carouselImages.length - 1].dataset.title + '</span><span class="slide-description">' + carouselImages[carouselImages.length - 1].dataset.content + '</span></div>' : '<div class="'+settings.itemClass+'" id="lastClone" style="height: ' + parentHeight + 'px; background-image: url(' + carouselImages[carouselImages.length - 1].src + ')"></div>';
